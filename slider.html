@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+/* header slider */
+.header-slider ul{
+  display: flex;
+  overflow-y: hidden;
+}
+
+.header-img{
+    max-width: 100%;
+    /* mask-image: linear-gradient(to bottom,#000000 50%,transparent 100%); */
+}
+
+.header-slider a{
+    position: absolute;
+    top: 20%;
+    z-index: 1;
+    padding: 5vh 1vw;
+    background: #ffffff4f;
+    color: #0000007b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* another right arrow because they are overlapping */
+.control_next{
+    right: 0;
+}
+
+/* box row1 */
+.box-row{
+    display: flex;
+    /* flex items are forced onto one line or can wrap onto multiple lines */
+    flex-wrap: wrap;
+    row-gap: 20px;
+    justify-content: space-between;
+    margin: 20px 30px;
+}
+
+.box-col{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+    background: #fff;
+    max-width: 24%;
+    min-height: 200px;
+    z-index: 1;
+}
+
+.box-col a{
+    font-size: 13px;
+    color: #009999;
+    font-weight: 500;
+}
+
+.header-box{  
+    /* it will overlap slider images halfpart */
+    margin-top: -20vh;
+}
+</style>
+<body>
+    <div class="header-slider">
+        <!-- 2 control icon -->
+        <a href="#" class="control_prev">&#129144</a>
+        <a href="#" class="control_next">&#129146</a>
+        <ul>
+          <img src="images/header1.jpg"   class="header-img"  alt="">
+          <img src="images/header2.jpg" class="header-img" alt="">
+          <img src="images/header3.jpg" class="header-img" alt="">
+          <img src="images/header4.jpg" class="header-img" alt="">
+          <img src="images/header5.jpg" class="header-img" alt="">
+          <img src="images/header6.jpg" class="header-img" alt="">
+        </ul>
+     </div>
+</body>
+<script>
+//slider where we hide other images and display only one image  we use header-slider ul img
+const imgs =document.querySelectorAll('.header-slider ul img');
+//it will select all the images inside this img ul
+
+//now we have to select control buttons
+const prev_btn =document.querySelector('.control_prev'); // we have to select only one element else it stores array it will store one element  in prev btn and next btn
+const next_btn =document.querySelector('.control_next');
+
+// lets take a varaible n=0 to get first image
+let n=0;
+
+function changeSlide(){
+    for (let i = 0; i < imgs.length; i++) {
+            imgs[i].style.display='none';  //it will select each images and select display none
+    }
+    imgs[n].style.display='block'; //here n=0 it will display images from 0 block means visible
+}
+changeSlide();
+
+prev_btn.addEventListener('click',(e)=>{
+    if(n > 0){
+        n-- //it will decrease the value by 1
+    }else{
+        n=imgs.length - 1;// when we click back button and we are on 1st image it will directly display last image
+    }
+    changeSlide(); //it will call this function and update it
+})
+
+next_btn.addEventListener('click',(e)=>{
+    if(n < imgs.length -1){
+        n++ //it will increase the value of n by 1
+    }else{
+        n=0;
+    }
+    changeSlide(); 
+})
+
+</script>
+</html>

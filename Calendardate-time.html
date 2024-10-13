@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date & Time</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #c7c7e2;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            background-image: url('https://st2.depositphotos.com/1079068/6181/i/450/depositphotos_61818509-stock-photo-blank-icon-calendar.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            width: 300px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            padding: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        #clock {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 11px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .times {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .times li {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            padding: 8px 10px;
+            border-radius: 5px;
+            background: rgba(235, 11, 11, 0.914);
+            text-align: center;
+        }
+
+        #point {
+            font-size: 28px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.8);
+        } 
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="clock">Tuesday 03 October 2024</div>
+        <ul class="times">
+            <li id="hour">05</li>
+            <li id="point">:</li>
+            <li id="min">20</li>
+            <li id="point">:</li>
+            <li id="sec">55</li>
+        </ul>
+    </div>
+
+    <script>
+        function clock() {
+            const monthnames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const daynames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            var today = new Date();
+            document.getElementById('clock').innerHTML = daynames[today.getDay()] + ' ' + today.getDate() + " " + monthnames[today.getMonth()] + ' ' + today.getFullYear();
+
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+
+            h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+
+            document.getElementById('hour').innerHTML = h;
+            document.getElementById('min').innerHTML = m;
+            document.getElementById('sec').innerHTML = s;
+        }
+
+        setInterval(clock, 1000);
+    </script>
+</body>
+</html>
